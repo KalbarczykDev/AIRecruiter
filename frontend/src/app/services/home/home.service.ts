@@ -3,10 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-
-interface HomeResponse {
-  message: string;
-}
+import { JobOffer } from '../../models/job-offer';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +12,7 @@ export class HomeService {
   private readonly apiUrl = environment.API_URL;
   constructor(private http: HttpClient) {}
 
-  getHomeData(): Observable<string> {
-    return this.http
-      .get<{ message: string }>(`${this.apiUrl}/`)
-      .pipe(map((response: HomeResponse) => response.message));
+  getHomeData(): Observable<JobOffer[]> {
+    return this.http.get<JobOffer[]>(`${this.apiUrl}/`);
   }
 }
