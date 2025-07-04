@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AiRecruiterApplication {
 
   public static void main(String[] args) {
+
     SpringApplication.run(AiRecruiterApplication.class, args);
   }
 }
