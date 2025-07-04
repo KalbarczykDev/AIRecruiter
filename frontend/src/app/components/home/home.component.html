@@ -1,2 +1,24 @@
-<p>{{ data }}</p>
-<p>{{ errorMessage }}</p>
+<h1>Available Job Offers</h1>
+
+<div *ngIf="isLoading">
+  <p>Loading job offers, please wait...</p>
+</div>
+
+<div *ngIf="!isLoading">
+  <div *ngIf="data.length > 0; else noOffers">
+    <h2>Job Offers List:</h2>
+    <ul>
+      <li *ngFor="let offer of data">
+        <h3>{{ offer.offerName }}</h3>
+        <p><strong>ID:</strong> {{ offer.id }}</p>
+        <p><strong>Description:</strong> {{ offer.offerDescription }}</p>
+        <hr />
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noOffers>
+    <p *ngIf="!errorMessage && data.length === 0">No job offers found.</p>
+    <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
+  </ng-template>
+</div>

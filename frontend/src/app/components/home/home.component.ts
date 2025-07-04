@@ -13,17 +13,21 @@ import { JobOffer } from '../../models/job-offer';
 export class HomeComponent {
   data: any = [];
   errorMessage: string = '';
+  isLoading: boolean = true;
 
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.homeService.getHomeData().subscribe({
       next: (data) => {
         this.data = data;
+        this.isLoading = false;
       },
       error: (err) => {
         this.errorMessage = 'Error loading data';
         console.error(err);
+        this.isLoading = false;
       },
     });
   }
