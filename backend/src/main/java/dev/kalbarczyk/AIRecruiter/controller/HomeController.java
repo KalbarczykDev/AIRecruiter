@@ -1,5 +1,7 @@
 package dev.kalbarczyk.AIRecruiter.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
   @GetMapping("/")
-  public String index() {
-    return "Home";
+  public Map<String, String> index() {
+    Map<String, String> response = new HashMap<>();
+    response.put("message", "Home Controller works!");
+    return response;
   }
 }
